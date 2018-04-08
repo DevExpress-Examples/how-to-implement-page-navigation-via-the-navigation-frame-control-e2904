@@ -1,0 +1,47 @@
+﻿<UserControl xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+    x:Class="SilverlightApplication66.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+    xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+
+        <dxb:BarManager Name="barManager1" CreateStandardLayout="True" Grid.Row="0" ItemClick="barManager1_ItemClick">
+            <dxb:BarManager.Items>
+                <dxb:BarCheckItem Content="Home" Tag="/Home" Name="btnHome" GroupIndex="0"/>
+                <dxb:BarCheckItem Content="About" Tag="/About" Name="btnAbout" GroupIndex="0"/>
+            </dxb:BarManager.Items>
+            <dxb:BarManager.Bars>
+                <dxb:Bar Name="navigationBar" IsMainMenu="True">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Top" />
+                    </dxb:Bar.DockInfo>
+                    <dxb:Bar.ItemLinks>
+                        <dxb:BarCheckItemLink BarItemName="btnHome"/>
+                        <dxb:BarCheckItemLink BarItemName="btnAbout"/>
+                    </dxb:Bar.ItemLinks>
+                </dxb:Bar>
+            </dxb:BarManager.Bars>
+
+            <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+
+                <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
+                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                    <navigation:Frame.UriMapper>
+                        <uriMapper:UriMapper>
+                            <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                            <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                        </uriMapper:UriMapper>
+                    </navigation:Frame.UriMapper>
+                </navigation:Frame>
+            </Border>
+
+        </dxb:BarManager>
+
+
+    </Grid>
+
+</UserControl>
